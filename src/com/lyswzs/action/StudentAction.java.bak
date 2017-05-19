@@ -1,0 +1,61 @@
+package com.lyswzs.action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.lyswzs.bean.Student;
+import com.lyswzs.bean.StudentScore;
+import com.lyswzs.service.StudentService;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class StudentAction extends ActionSupport{
+	
+	/**
+	 * 
+	 */
+
+	private List<StudentScore> scorelist;
+	private Student stus;
+	
+	public List<StudentScore> getScorelist() {
+		return scorelist;
+	}
+	public void setScorelist(List<StudentScore> scorelist) {
+		this.scorelist = scorelist;
+	}
+
+	public Student getStus() {
+		return stus;
+	}
+	public void setStus(Student stus) {
+		this.stus = stus;
+	}
+	public String Score(){
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		Student student=(Student)session.getAttribute("student");
+		StudentService service=new StudentService();
+		//scorelist=new ArrayList<StudentScore>();
+		scorelist=service.findScore(student.getStu_id());
+		//session.setAttribute("scorelist", list);
+		return "scorelist";
+	}
+	public String Update(){
+		StudentService service=new StudentService();
+		if(service.update(stus.getStu_id(),stus.getStu_pwd(),stus.getStu_tel(),stus.getStu_address())){	
+			return SUCCESS;
+		}
+		return INPUT;
+	}
+
+	public String Info(){
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		Student student=(Student)session.getAttribute("student");
+		StudentService service=new StudentService();
+		stus=service.findStu(student.getStu_id());			
+		session.setAttribute("student", stus);
+		return "stus";
+	}
+}

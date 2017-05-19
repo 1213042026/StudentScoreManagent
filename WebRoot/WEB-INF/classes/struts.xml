@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 指定子配置的路径 -->
+	<include file="com/lyswzs/conf/login.xml"></include>
+	<include file="com/lyswzs/conf/student.xml"></include>
+	<include file="com/lyswzs/conf/teacher.xml"></include>
+	<include file="com/lyswzs/conf/stuclass.xml"></include>
+	<include file="com/lyswzs/conf/course.xml"></include>
+	<package name="lyswzs" namespace="/" extends="struts-default">
+		<!-- <global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>-->
+		
+		<!-- 配置程序出现错误后引导的界面 -->
+		<!--<global-exception-mappings>
+			<exception-mapping result="error" exception="Exception"></exception-mapping>
+		</global-exception-mappings>-->
+	</package>
+	
+	<package name="default" extends="struts-default">
+		<default-action-ref name="notFound" />
+		<action name="notfound">
+			<result>/404.jsp</result>
+		</action>
+	</package>
+</struts>    

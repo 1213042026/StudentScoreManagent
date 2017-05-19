@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="teachers" namespace="/" extends="lyswzs">
+		<action name="*teachers" class="com.lyswzs.action.TeacherAction"
+			method="{1}">
+			<result name="courseList">/teacher/querycourse.jsp</result>
+			<result name="courseInfo">/teacher/courseinfo.jsp</result>
+			<result name="updateTeacher">/login.jsp</result>
+			<result name="scoreList">/teacher/queryscore.jsp</result>
+			<result name="scoreInfo">/teacher/scoreInfo.jsp</result>
+			<result name="ok">/admins/findAllteac.jsp</result>
+			<result name="insertok" type="chain">findAllteachers</result>
+			<result name="deleteok" type="chain">findAllteachers</result>
+		</action>
+	</package>
+</struts>    
